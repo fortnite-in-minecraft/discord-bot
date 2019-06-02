@@ -1,0 +1,23 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for the server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fortnite-in-minecraft/discord-bot.git"
+  },
+  "author": "maxh65000",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/fortnite-in-minecraft/discord-bot/issues"
+  },
+  "homepage": "https://github.com/fortnite-in-minecraft/discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}
