@@ -1,11 +1,11 @@
 const fs = require("fs");
+const net = require("net");
 const path = require("path");
 const config = require("./config.json");
 const token = config.token;
 const Discord = require("discord.js");
-const readline = require("readline");
 
-let rl, guild, adminLog, pointLog, playerLog;
+let sockClient, guild, adminLog, pointLog, playerLog;
 
 const client = new Discord.Client();
 
@@ -15,15 +15,11 @@ client.on("ready", () => {
     pointLog = guild.channels.get(config.channels.pointLog);
     playerLog = guild.channels.get(config.channels.playerLog);
 
-    rl && rl.close();
+    sockClient && sockClient.close();
+    sockClient = net.createConnection("socket");
 
-    rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-        terminal: false
-    });
 
-    rl.on("line", function(line){
+    sockClient.on("data", function(line){
         try{
             const json = JSON.parse(line);
             json.forEach(eventList => {
