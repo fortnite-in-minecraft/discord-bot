@@ -23,8 +23,8 @@ client.on("ready", () => {
         try{
             const json = JSON.parse(line);
             console.log("parsed json", json);
-            const event = eventList[0];
-            const data = eventList[1];
+            const event = json[0];
+            const data = json[1];
             switch(event){
                 case "logLine":
                     playerLog.send(data.line);
