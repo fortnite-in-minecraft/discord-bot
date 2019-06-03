@@ -2,6 +2,12 @@ const net = require("net");
 const fs = require("fs");
 const readline = require("readline");
 let rl;
+
+
+try{
+    fs.unlinkSync("socket");
+}catch(e){}
+
 const unixServer = net.createServer(function(client) {
     rl && rl.close();
     client.write(`["hello", {"A":0}]`);
@@ -16,7 +22,3 @@ const unixServer = net.createServer(function(client) {
     });
 });
 unixServer.listen("socket");
-
-try{
-    fs.unlinkSync("socket");
-}catch(e){}
