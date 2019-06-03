@@ -22,6 +22,7 @@ client.on("ready", () => {
     sockClient.on("data", function(line){
         try{
             const json = JSON.parse(line);
+            console.log("parsed json", json);
             const event = eventList[0];
             const data = eventList[1];
             switch(event){
