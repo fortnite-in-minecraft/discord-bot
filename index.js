@@ -22,14 +22,12 @@ client.on("ready", () => {
     sockClient.on("data", function(line){
         try{
             const json = JSON.parse(line);
-            json.forEach(eventList => {
-                const event = eventList[0];
-                const data = eventList[1];
-                switch(event){
-                    case "logLine":
-                        playerLog.send(data.line);
-                }
-            });
+            const event = eventList[0];
+            const data = eventList[1];
+            switch(event){
+                case "logLine":
+                    playerLog.send(data.line);
+            }
         }catch (e) {
             console.error(e);
         }
