@@ -20,7 +20,7 @@ client.on("ready", () => {
     rl && rl.close();
     sockClient && sockClient.close();
 
-    sockClient = net.createConnection("socket");
+    sockClient = net.createConnection(process.argv[2] || "socket");
     rl = readline.createInterface({
         input: sockClient,
         terminal: false
