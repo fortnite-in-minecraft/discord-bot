@@ -1,0 +1,34 @@
+{
+  "mappings": {
+    "logLine": {
+      "color": 16777215,
+      "logChannel": "adminLog",
+      "desc": "Server log event"
+    },
+    "playerDeath": {
+      "color": 16711711,
+      "logChannel": "playerLog",
+      "desc":  "A player died"
+    },
+    "playerKill": {
+      "color": 16776960,
+      "logChannel": "playerLog",
+      "desc":  "A player killed another player"
+    },
+    "playerDeathDueToOtherPlayer": {
+      "color": 16776960,
+      "logChannel": "playerLog",
+      "desc":  "A player caused another player to die"
+    },
+    "pointChange": {
+      "color": 65280,
+      "logChannel": "pointLog",
+      "desc":  "The points of players changed"
+    },
+    "anticheatOffense": {
+      "color": 16777215,
+      "logChannel": "adminLog",
+      "desc":  "An anticheat plugin detected something...suspicious :thinking:"
+    }
+  }
+}
