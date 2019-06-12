@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/fortnite-in-minecraft/discord-bot#readme",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^11.5.1",
+    "tail": "^2.0.2"
   }
 }

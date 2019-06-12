@@ -1,5 +1,6 @@
 dependencies:
   discord.js: 11.5.1
+  tail: 2.0.2
 lockfileVersion: 5
 packages:
   /async-limiter/1.0.0:
@@ -39,6 +40,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-NjxjITIj04Ffqid5lqr7XdgwM7X61c/Dns073Ly170bPQHLm6jkmelye/eglS++1nfTWktpP6Y2bFXjdPlQqdw==
+  /tail/2.0.2:
+    dev: false
+    engines:
+      node: '>= 6.0.0'
+    resolution:
+      integrity: sha512-raFipiKWdGKEzxbvZwnhUGqjvsv0gpa/1A479rL//NOxnNwYZDN4MPk6xJJdUFs8P2Xrff3nbH5fcyYRLU4UHQ==
   /tweetnacl/1.0.1:
     dev: false
     resolution:
@@ -51,3 +58,4 @@ packages:
       integrity: sha512-GIyAXC2cB7LjvpgMt9EKS2ldqr0MTrORaleiOno6TweZ6r3TKtoFQWay/2PceJ3RuBasOHzXNn5Lrw1X0bEjqA==
 specifiers:
   discord.js: ^11.5.1
+  tail: ^2.0.2

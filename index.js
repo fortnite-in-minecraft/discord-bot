@@ -1,15 +1,15 @@
 const fs = require("fs");
-const net = require("net");
-const path = require("path");
+const Tail = require("tail").Tail;
 const config = require("./config.json");
 const channelData = require("./data.json")
 const token = config.token;
 const Discord = require("discord.js");
-const readline = require("readline");
 
-let guild, adminLog, pointLog, playerLog, rl;
+let guild, adminLog, pointLog, playerLog, tail;
 
 const client = new Discord.Client();
+
+fs.writeFileSync(config.filePath || process.argv[2] || "socket", "");
 
 client.on("ready", () => {
     guild = client.guilds.get(config.guildId);
@@ -17,15 +17,12 @@ client.on("ready", () => {
     pointLog = guild.channels.get(config.channels.pointLog);
     playerLog = guild.channels.get(config.channels.playerLog);
 
-    rl && rl.close();
+    tail && tail.unwatch();
+    tail = new Tail(config.filePath || process.argv[2] || "socket");
 
-    rl = readline.createInterface({
-        input: fs.createReadStream(config.filePath || process.argv[2] || "socket"),
-        terminal: false
-    });
-
-    rl.on("line", function(line){
+    tail.on("line", function(line){
         try{
+            console.log("got line " + line);
             line = line.toString();
             const json = JSON.parse(line);
             console.log("parsed json", json);
