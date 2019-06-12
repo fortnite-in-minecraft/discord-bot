@@ -15,15 +15,10 @@
       "logChannel": "playerLog",
       "desc":  "A player killed another player"
     },
-    "playerDeathDueToOtherPlayer": {
-      "color": 16776960,
-      "logChannel": "playerLog",
-      "desc":  "A player caused another player to die"
-    },
     "pointChange": {
       "color": 65280,
       "logChannel": "pointLog",
-      "desc":  "The points of players changed"
+      "desc":  "The points of a player changed"
     },
     "anticheatOffense": {
       "color": 16777215,

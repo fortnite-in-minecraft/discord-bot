@@ -7,7 +7,7 @@ const token = config.token;
 const Discord = require("discord.js");
 const readline = require("readline");
 
-let sockClient, guild, adminLog, pointLog, playerLog, rl;
+let guild, adminLog, pointLog, playerLog, rl;
 
 const client = new Discord.Client();
 
@@ -18,11 +18,9 @@ client.on("ready", () => {
     playerLog = guild.channels.get(config.channels.playerLog);
 
     rl && rl.close();
-    sockClient && sockClient.close();
 
-    sockClient = net.createConnection(process.argv[2] || "socket");
     rl = readline.createInterface({
-        input: sockClient,
+        input: fs.createReadStream(config.filePath || process.argv[2] || "socket"),
         terminal: false
     });
 
@@ -60,11 +58,8 @@ client.on("ready", () => {
                 case "playerKill":
                     message = `${data.player.user} eliminated ${data.killer.user} ${data.cause}`;
                     break;
-                case "playerDeathDueToOtherPlayer":
-                    message = `${data.player.user} eliminated ${data.killer.user} ${data.cause}`;
-                    break;
                 case "pointChange":
-                    message = "";
+                    message = `${data.player.user} went from ${data.oldPointValue} points to ${data.newPointValue} points due to ${data.cause}`;
                     break;
                 case "anticheatOffense":
                     message = `${data.player.user} ${data.desc}`;
