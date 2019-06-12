@@ -20,10 +20,10 @@
       "logChannel": "pointLog",
       "desc":  "The points of a player changed"
     },
-    "anticheatOffense": {
-      "color": 16777215,
-      "logChannel": "adminLog",
-      "desc":  "An anticheat plugin detected something...suspicious :thinking:"
+    "roundInfo": {
+      "color": 9131818,
+      "logChannel": "playerLog",
+      "desc":  "Round update"
     }
   }
 }

@@ -40,6 +40,9 @@ client.on("ready", () => {
                 case "playerLog":
                     channel = playerLog;
                     break;
+                case "roundInfo":
+                    channel = playerLog;
+                    break;
                 default:
                     throw new Error("Unrecognized type " + event);
             }
@@ -58,9 +61,8 @@ client.on("ready", () => {
                 case "pointChange":
                     message = `${data.player.user} went from ${data.oldPointValue} points to ${data.newPointValue} points due to ${data.cause}`;
                     break;
-                case "anticheatOffense":
-                    message = `${data.player.user} ${data.desc}`;
-                    break;
+                case "roundInfo":
+                    message = `Round #${data.roundNumber}${data.event}`;
             }
 
             channel.send({
@@ -68,7 +70,7 @@ client.on("ready", () => {
                     "title": channelData.mappings[event].desc,
                     "description": message,
                     "url": "https://discordapp.com",
-                    "color": 16777215,
+                    "color": channelData.mappings[event].color,
                     "timestamp": "2019-06-03T23:57:02.367Z",
                     "footer": {
                         "text": "Raw json payload: " + JSON.stringify(data)
