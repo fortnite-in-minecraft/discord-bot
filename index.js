@@ -9,9 +9,10 @@ let guild, adminLog, pointLog, playerLog, tail;
 
 const client = new Discord.Client();
 
-fs.writeFileSync(config.filePath || process.argv[2] || "socket", "");
 
 client.on("ready", () => {
+
+    fs.writeFileSync(config.filePath || process.argv[2] || "socket", "");
     guild = client.guilds.get(config.guildId);
     adminLog = guild.channels.get(config.channels.adminLog);
     pointLog = guild.channels.get(config.channels.pointLog);
@@ -40,14 +41,12 @@ client.on("ready", () => {
                 case "playerLog":
                     channel = playerLog;
                     break;
-                case "roundInfo":
-                    channel = playerLog;
-                    break;
                 default:
                     throw new Error("Unrecognized type " + event);
             }
 
             let message;
+            let fields;
             switch(event){
                 case "logLine":
                     message = data.line;
@@ -63,6 +62,20 @@ client.on("ready", () => {
                     break;
                 case "roundInfo":
                     message = `Round #${data.roundNumber}${data.event}`;
+                    break;
+                case "startGame":
+                    message = ``;
+                    break;
+                case "endGame":
+                    message = `Final scoreboard`;
+                    fields = data.scoreData.reduce((acc, arr) => {
+                        acc.push({
+                            name: arr[0],
+                            value: arr[1].toString(),
+                            inline: true
+                        });
+                        return acc;
+                    }, []);
             }
 
             channel.send({
@@ -77,7 +90,8 @@ client.on("ready", () => {
                     },
                     "author": {
                         "name": event
-                    }
+                    },
+                    "fields": fields
                 }
             });
         }catch (e) {

@@ -22,8 +22,18 @@
     },
     "roundInfo": {
       "color": 9131818,
-      "logChannel": "playerLog",
+      "logChannel": "pointLog",
       "desc":  "Round update"
+    },
+    "startGame": {
+      "color": 7506394,
+      "logChannel": "pointLog",
+      "desc":  "The game is starting!"
+    },
+    "endGame": {
+      "color": 7506394,
+      "logChannel": "pointLog",
+      "desc":  "Game over!"
     }
   }
 }
