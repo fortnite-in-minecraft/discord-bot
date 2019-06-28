@@ -58,7 +58,7 @@ client.on("ready", () => {
                     message = `${data.player.user} eliminated ${data.killer.user} ${data.cause}`;
                     break;
                 case "pointChange":
-                    message = `${data.player.user} went from ${data.oldPointValue} points to ${data.newPointValue} points due to ${data.cause}`;
+                    message = `${data.player.user} went from ${data.oldPointValue} points to ${data.newPointValue} points because ${data.cause}`;
                     break;
                 case "roundInfo":
                     message = `Round #${data.roundNumber}${data.event}`;
