@@ -9,6 +9,9 @@ let guild, adminLog, pointLog, playerLog, tail;
 
 const client = new Discord.Client();
 
+const replaceAll = function(str, search, replacement) {
+    return str.split(search).join(replacement);
+};
 
 client.on("ready", () => {
 
@@ -17,6 +20,15 @@ client.on("ready", () => {
     adminLog = guild.channels.get(config.channels.adminLog);
     pointLog = guild.channels.get(config.channels.pointLog);
     playerLog = guild.channels.get(config.channels.playerLog);
+
+    const process = (str) => {
+        if(!str) return str;
+        guild.members.forEach(member => {
+            const name = member.nickname || member.user.username;
+            str = replaceAll(str, name, "<@" + member.user.id + ">");
+        });
+        return str;
+    };
 
     tail && tail.unwatch();
     tail = new Tail(config.filePath || process.argv[2] || "socket");
@@ -81,7 +93,7 @@ client.on("ready", () => {
             channel.send({
                 "embed": {
                     "title": channelData.mappings[event].desc,
-                    "description": message,
+                    "description": process(message),
                     "url": "https://discordapp.com",
                     "color": channelData.mappings[event].color,
                     "timestamp": "2019-06-03T23:57:02.367Z",
@@ -91,7 +103,7 @@ client.on("ready", () => {
                     "author": {
                         "name": event
                     },
-                    "fields": fields
+                    "fields": process(fields)
                 }
             });
         }catch (e) {
